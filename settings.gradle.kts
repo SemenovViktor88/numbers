@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "numbers"
 include(":app")
- 
+include(":data")
+include(":data:common")
+include(":data:network")
+include(":data:storage")
+include(":domain")
