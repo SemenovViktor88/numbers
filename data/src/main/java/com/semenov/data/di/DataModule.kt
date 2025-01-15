@@ -1,6 +1,7 @@
-package com.semenov.network.di
+package com.semenov.data.di
 
-import com.semenov.network.ApiService
+import com.semenov.common.AppInfoProvider
+import com.semenov.data.network.NumbersApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,20 +13,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object DataModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String): Retrofit {
+    fun createRetrofit(infoProvider: AppInfoProvider): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(infoProvider.baseHost)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
+    fun provideNumbersApi(retrofit: Retrofit): NumbersApi {
+        return retrofit.create(NumbersApi::class.java)
     }
 }

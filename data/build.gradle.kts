@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies{
-    implementation(project(Modules.data))
-    implementation(libs.hilt.core)
     ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.core)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
 }
