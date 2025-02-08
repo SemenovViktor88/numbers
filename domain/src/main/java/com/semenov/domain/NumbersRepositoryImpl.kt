@@ -10,11 +10,7 @@ class NumbersRepositoryImpl @Inject constructor(
     private val numbersApi: NumbersApi
 ) : NumbersRepository {
 
-    override suspend fun getRandomNumber() {
-        numbersApi.getRandomNumber()
-    }
+    override suspend fun getRandomNumber() = numbersApi.getRandomNumber()
 
-    override suspend fun getNumber(number: String) {
-        numbersApi.getNumber(number)
-    }
+    override suspend fun getNumber(number: String) = numbersApi.getNumber(number)
 }

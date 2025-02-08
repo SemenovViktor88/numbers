@@ -8,4 +8,5 @@ dependencies{
     implementation(libs.hilt.core)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.gson.scalars)
 }

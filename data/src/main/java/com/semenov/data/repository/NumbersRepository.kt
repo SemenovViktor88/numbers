@@ -1,6 +1,6 @@
 package com.semenov.data.repository
 
 interface NumbersRepository {
-    suspend fun getRandomNumber()
-    suspend fun getNumber(number: String)
+    suspend fun getRandomNumber(): String
+    suspend fun getNumber(number: String): String
 }
