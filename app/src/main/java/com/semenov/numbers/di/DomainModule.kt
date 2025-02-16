@@ -1,6 +1,7 @@
-package com.semenov.domain.di
+package com.semenov.numbers.di
 
-import com.semenov.data.network.NumbersApi
+import com.semenov.data.db.NumberDao
+import com.semenov.data.network.NumberApi
 import com.semenov.data.repository.NumbersRepository
 import com.semenov.domain.NumbersRepositoryImpl
 import dagger.Module
@@ -15,7 +16,7 @@ object DomainModule {
 
     @Provides
     @Singleton
-    fun provideNumbersRepository(numbersApi: NumbersApi): NumbersRepository {
-        return NumbersRepositoryImpl(numbersApi)
+    fun provideNumbersRepository(numbersApi: NumberApi, numberDao: NumberDao): NumbersRepository {
+        return NumbersRepositoryImpl(numbersApi, numberDao)
     }
 }

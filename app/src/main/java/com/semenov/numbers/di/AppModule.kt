@@ -1,7 +1,7 @@
 package com.semenov.numbers.di
 
 import android.app.Application
-import com.semenov.common.AppInfoProvider
+import com.semenov.data.AppInfoProvider
 import com.semenov.numbers.util.AppInfoProviderImpl
 import dagger.Module
 import dagger.Provides
