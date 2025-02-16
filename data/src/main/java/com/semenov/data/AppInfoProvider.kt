@@ -1,4 +1,4 @@
-package com.semenov.common
+package com.semenov.data
 
 interface AppInfoProvider {
     val androidId: String

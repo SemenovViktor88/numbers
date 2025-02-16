@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.provider.Settings
-import com.semenov.common.AppInfoProvider
+import com.semenov.data.AppInfoProvider
 import com.semenov.numbers.BuildConfig
 import com.semenov.numbers.R
 

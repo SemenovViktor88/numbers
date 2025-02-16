@@ -3,7 +3,7 @@ package com.semenov.data.network
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface NumbersApi {
+interface NumberApi {
 
     @GET(ApiContract.Numbers.RANDOM)
     suspend fun getRandomNumber(): String

@@ -13,5 +13,5 @@ interface NumberDao {
     suspend fun insertNumber(number: EntityNumber)
 
     @Query("SELECT * FROM numbers")
-    suspend fun getAllNumber(): List<EntityNumber>?
+    suspend fun getAllNumbers(): List<EntityNumber>
 }

@@ -1,7 +1,11 @@
-package com.semenov.data.di
+package com.semenov.numbers.di
 
-import com.semenov.common.AppInfoProvider
-import com.semenov.data.network.NumbersApi
+import android.app.Application
+import androidx.room.Room
+import com.semenov.data.AppInfoProvider
+import com.semenov.data.db.NumberDao
+import com.semenov.data.db.NumbersDatabase
+import com.semenov.data.network.NumberApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +32,19 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideNumbersApi(retrofit: Retrofit): NumbersApi {
-        return retrofit.create(NumbersApi::class.java)
+    fun provideNumbersApi(retrofit: Retrofit): NumberApi {
+        return retrofit.create(NumberApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): NumbersDatabase {
+        return Room.databaseBuilder(app, NumbersDatabase::class.java, "numbers_db",)
+            .build()
+    }
+
+    @Provides
+    fun provideNumberDao(db: NumbersDatabase): NumberDao {
+        return db.numbersDao()
     }
 }
