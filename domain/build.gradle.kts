@@ -6,5 +6,6 @@ plugins {
 dependencies{
     implementation(project(Modules.data))
     implementation(libs.hilt.core)
+    implementation(libs.kotlinx.coroutines.android)
     ksp(libs.hilt.android.compiler)
 }

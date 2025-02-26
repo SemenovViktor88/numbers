@@ -9,17 +9,39 @@ import javax.inject.Singleton
 
 @Singleton
 class NumbersRepositoryImpl @Inject constructor(
-    private val numbersApi: NumberApi,
-    private val numbersDao: NumberDao,
+    private val api: NumberApi,
+    private val dao: NumberDao,
 ) : NumbersRepository {
 
-    override suspend fun getRandomNumber() = numbersApi.getRandomNumber()
+    override suspend fun getRandomNumber(): EntityNumber {
+        val fact = api.getRandomNumber()
+        val number = Regex("\\d+").find(fact)?.value?.toInt()
 
-    override suspend fun getNumber(number: String) = numbersApi.getNumber(number)
+        if (number != null) {
+            val cachedFact = dao.getNumber(number)
+            if (cachedFact == null) {
+                dao.insertNumber(EntityNumber(number, fact))
+            }
+        }
+        val entity = EntityNumber(number = number ?: 0, description = fact)
+        return entity
+    }
 
-    override suspend fun getAllNumbers() = numbersDao.getAllNumbers()
+    override suspend fun getNumber(number: Int): EntityNumber {
+        val cachedFact = dao.getNumber(number)
+        if (cachedFact != null) {
+            return cachedFact
+        }
+
+        val fact = api.getNumber(number.toString())
+        val entity = EntityNumber(number = number, description = fact)
+        dao.insertNumber(entity)
+        return entity
+    }
+
+    override suspend fun getAllNumbers() = dao.getAllNumbers()
 
     override suspend fun insertNumber(number: EntityNumber) {
-        numbersDao.insertNumber(number)
+        dao.insertNumber(number)
     }
 }
